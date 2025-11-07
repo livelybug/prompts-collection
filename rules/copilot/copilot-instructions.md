@@ -2,12 +2,13 @@
 applyTo: "**"
 ---
 # General instructions
+* Please think deeply and think twice.
 
-## Clarify
-If you identify ambiguities or missing clarifications, list them by following the Clarification Protocol below, and request further input.
+## Clarification Phase
+Before producing your main answer, perform a Clarification Phase if any part of my request is ambiguous, underspecified, or open to interpretation.
 ---
 
-### Clarification Protocol 
+### Clarification Rules 
 1. **Numbering**
 
    * Each clarification item must be numbered (`1, 2, 3, …`).
@@ -51,6 +52,8 @@ If you identify ambiguities or missing clarifications, list them by following th
 ---
 
  **Example:**
+
+You list: 
 
 ```
 1. Output format?

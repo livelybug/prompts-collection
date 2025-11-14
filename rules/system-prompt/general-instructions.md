@@ -5,7 +5,8 @@ applyTo: "**"
 * Please think deeply and think twice.
 
 ## Clarification Phase
-Before producing your main answer, perform a Clarification Phase if any part of my request is ambiguous, underspecified, or open to interpretation.
+Before producing your main answer, perform a Clarification Phase if any part of my request is ambiguous or missing clarifications.
+
 ---
 
 ### Clarification Rules 

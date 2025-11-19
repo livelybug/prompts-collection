@@ -85,4 +85,5 @@ I’ll reply like:
 ```
 
 If I **skip** a clarification(like "2" is skipped above), it means I **accept your preferred choice or proposal**.
+
 ---

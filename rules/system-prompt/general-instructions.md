@@ -48,8 +48,6 @@ Before producing your main answer, perform a Clarification Phase if any part of 
    * Present all clarifications together before producing any main content.
    * Do **not** provide reasoning, justifications, or partial answers during this phase.
 
----
-
  **Example:**
 
 You list: 

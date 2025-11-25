@@ -1,13 +1,10 @@
 ---
-applyTo: "**"
----
+
 # General instructions
 * Please think deeply and think twice.
 
 ## Clarification Phase
 Before producing your main answer, perform a Clarification Phase if any part of my request is ambiguous or missing clarifications.
-
----
 
 ### Clarification Rules 
 1. **Numbering**

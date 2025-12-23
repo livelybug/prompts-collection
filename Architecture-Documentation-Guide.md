@@ -2,110 +2,127 @@
 
 ## Part 1: Writing Principles
 
-**1. Recursive Depth**
+### Tree-Based Flowchart Model
 
-* **Level 1** is the root (System Context).
-* **Level ** explains any node from **Level ** that requires further technical breakdown.
-* Stop nesting only when a node represents an atomic operation or a third-party black box.
+Flowcharts in the architecture doc MUST use a tree structure.
 
-**2. Multi-Component Expansion**
+#### Definitions
+* **Element**: A subsystem or module. A subsystem is composed of modules, not needed in a small system.
+* **Node**: A flowchart that chains multiple elements.
+* **Root Node**: The top-level node describing the entire system.
+* **Parent Node**: A node that contains some elements that can be expanded further.
+* **Child Node**: A node that explains one specific element of its parent node.
 
-* Each level can contain multiple sub-sections.
-* If Level 1 contains `[Subsystem A]` and `[Subsystem B]`, then Level 2 must contain a dedicated breakdown for both if they meet the complexity threshold.
+### Structural Rules
 
-**3. Logic-Gate Flowcharts**
+#### 1. Root Node
 
-* All flows must be written in declarative pseudo-code.
-* Use indentation to show nesting.
-* **Keywords:** `IF`, `AND`, `OR`, `THEN`, `ELSE`, `WHILE`, `FOR EACH`, `EXIT`.
+* Exactly one root node per system.
+* Represents the highest level of the system.
+* Chains major elements.
 
-**4. Localized Terminology**
+#### 2. Parent–Child Rules
 
-* Define `[Terms]` at the specific level where they are introduced.
-* Use the **Terminology Ledger** table immediately following the flow logic.
+* A parent node MAY have multiple child nodes.
+* Each child node MUST:
+  * Explain exactly one element from the parent.
 
-**5. Style Constraint**
+#### 3. Expansion Criteria (Complexity Threshold)
 
-* Eliminate subjective/decorative language (e.g., "fast," "easy," "efficient").
-* Use only objective, declarative statements.
+An element MUST be expanded into a child node if it is qualitatively complex, including when it:
+
+* Requires internal control flow to be understood
+
+If none element in a node apply, the node remains a leaf.
+
+#### 4. Leaf
+
+* A node that's not expanded further is a leaf.
+* A leaf represent an simple operation or a third-party black box.
+
+### Other Rules
+* Hierarchy Numbering & Naming: 
+  * Use decimal outline numbering (e.g., 1.1 Root, 2.1 Child A, 2.2 Child B, 3.1 Grandchild A) to represent the tree depth.
+* Flowchart rule:
+  * Indentation: Use strictly nested bullet points to denote scope.
+* Parent nodes MUST reference their child nodes.
+* Localized Context (Terminology Ledger):
+  * Each node (Root, Parent, or Child) must have its own Terminology Ledger immediately following its logic flow to define terms specific to that node.
+* Style Constraint:
+  * Use concise, declarative language. Eliminate decorative adjectives.
+
+### Summary
+
+* Flowcharts in an architecture docu forms a tree.
+* Expansion is driven by qualitative complexity.
+* Each child node explains one parent element.
 
 ---
 
-# Part 2: Recursive Document Template
+## Part 2: Tree-Based Document Template
 
-## Level 1: [System Name] Root Orchestration
+### 1. [Root Node]: System Master Orchestration
 
-*Scope: The highest-level chain connecting external triggers to the system boundary.*
+*Scope: The highest-level flow chaining the primary elements.*
 
-### 1.1 Master Logic Flow
+#### 1.1 Root Logic Flow
 
-* **IF** `[Global Trigger]` occurs:
-* **THEN** route to `[Subsystem A]`.
-* **AND** route to `[Subsystem B]`.
-* **IF** `[Subsystem A]` AND `[Subsystem B]` return `[Success]`:
-* **THEN** update `[Primary State Store]`.
-
-
+* **IF** `[Global Trigger]` is detected:
+* **THEN** execute `[Element A]`.
+* **AND** execute `[Element B]`.
+* **IF** results from both are valid:
+  * **THEN** commit to `[Global Persistence]`.
 * **ELSE**:
-* **THEN** execute `[Global Recovery Flow]`.
+  * **THEN** trigger `[Global Error Handler]`.
 
-
-
-
-
-### 1.2 Level 1 Terminology Ledger
+#### 1.1T Root Terminology Ledger
 
 | Term | Definition |
 | --- | --- |
-| **[Term]** | Objective technical description. |
+| **Global Persistence** | Save the data to global storage. |
 
 ---
 
-## Level [N]: [Subsystem/Module Name] Breakdown
+### [Node N]: [Element Name] (Child of Node [Parent ID])
 
-*Repeat this section for every complex node identified in Level [N-1].*
+*Repeat this structure for every element that meets the complexity threshold.*
 
-### [N].1 Logic Flow for [Component Name]
+#### N.1 Logic Flow
 
-* **FOR EACH** `[Input Unit]` from `[Level N-1]`:
-* **IF** `[Internal Condition]`:
-* **THEN** execute `[Child Module X]`. (Expanded in Level N+1).
+* **FOR EACH** `[Input]` from `[Parent Node]`:
+  * **IF** `[Internal Condition X]`:
+    * **THEN** route to `[Module N.a]`.
+  * **ELSE IF** `[Internal Condition Y]`:
+    * **THEN** route to `[Module N.b]`.
 
+* **WHILE** `[Process]` is active:
+  * **THEN** update `[Local State]`.
 
+* return `[Output]` to `[Parent Node]`.
+
+#### N.1T Node N Terminology Ledger
+
+| Term | Definition |
+| --- | --- |
+| **[Local State]** | Ephemeral data stored within the scope of this node. |
+
+---
+
+### [Node N.x]: [Element Name] (Leaf Node of Node [Parent ID])
+
+*Scope: Final node of logic. No further child nodes.*
+
+#### N.x.1 Logic Flow
+
+* **IF** `[Condition]`:
+  * **THEN** perform `[Atomic Action]`.
 * **ELSE**:
-* **THEN** execute `[Child Module Y]`. (Expanded in Level N+1).
+  * **THEN** return `[Default Value]`.
 
-
-
-
-* **IF** all units processed:
-* **THEN** return `[Aggregated Output]` to `[Level N-1]`.
-
-
-
-### [N].2 Level [N] Terminology Ledger
+#### N.x.1T Node N.x Terminology Ledger
 
 | Term | Definition |
 | --- | --- |
-| **[Term]** | Objective technical description. |
+| **[Atomic Action]** | A single, non-divisible technical operation. |
 
 ---
-
-## Level [N+1]: [Atomic Component Name]
-
-*Scope: The final layer of logic where no further sub-components exist.*
-
-### [N+1].1 Logic Flow
-
-* **IF** `[State A]`:
-* **THEN** execute `[Atomic Function]`.
-
-
-* **THEN** return `[Result]` to `[Level N]`.
-
-### [N+1].2 Level [N+1] Terminology Ledger
-
-| Term | Definition |
-| --- | --- |
-| **[Term]** | Objective technical description. |
-

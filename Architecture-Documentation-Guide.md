@@ -42,12 +42,12 @@ If none element in a node apply, the node remains a leaf.
 
 ### Other Rules
 * Hierarchy Numbering & Naming: 
-  * Use decimal outline numbering (e.g., 1.1 Root, 2.1 Child A, 2.2 Child B, 3.1 Grandchild A) to represent the tree depth.
+  * Use decimal outline numbering (e.g., 1.0 Root, 1.1 Child A, 1.2 Child B, 1.1.1 Grandchild A) to represent the tree depth.
 * Flowchart rule:
   * Indentation: Use strictly nested bullet points to denote scope.
 * Parent nodes MUST reference their child nodes.
 * Localized Context (Terminology Ledger):
-  * Each node (Root, Parent, or Child) must have its own Terminology Ledger immediately following its logic flow to define terms specific to that node.
+  * Each node (Root, Parent, or Child) may have its own Terminology Ledger immediately following its logic flow to define terms specific to that node.
 * Style Constraint:
   * Use concise, declarative language. Eliminate decorative adjectives.
 
@@ -61,21 +61,21 @@ If none element in a node apply, the node remains a leaf.
 
 ## Part 2: Tree-Based Document Template
 
-### 1. [Root Node]: System Master Orchestration
+### 1.0 [Root Node]: System Master Orchestration
 
 *Scope: The highest-level flow chaining the primary elements.*
 
-#### 1.1 Root Logic Flow
+#### 1.0.1 Root Logic Flow
 
 * **IF** `[Global Trigger]` is detected:
-* **THEN** execute `[Element A]`.
-* **AND** execute `[Element B]`.
+* **THEN** execute `[Element A]` (See Node 1.1 [Element A]).
+* **AND** execute `[Element B]` (See Node 1.2 [Element B]).
 * **IF** results from both are valid:
   * **THEN** commit to `[Global Persistence]`.
 * **ELSE**:
   * **THEN** trigger `[Global Error Handler]`.
 
-#### 1.1T Root Terminology Ledger
+#### 1.0.2 Root Terminology Ledger
 
 | Term | Definition |
 | --- | --- |
@@ -83,24 +83,24 @@ If none element in a node apply, the node remains a leaf.
 
 ---
 
-### [Node N]: [Element Name] (Child of Node [Parent ID])
+### Node 1.1: [Element A Name] (Child of Node 1.0)
 
 *Repeat this structure for every element that meets the complexity threshold.*
 
-#### N.1 Logic Flow
+#### 1.1.1 Logic Flow
 
 * **FOR EACH** `[Input]` from `[Parent Node]`:
   * **IF** `[Internal Condition X]`:
-    * **THEN** route to `[Module N.a]`.
+    * **THEN** route to `[Module 1.1.1]` (See Node 1.1.1 [Module Name]).
   * **ELSE IF** `[Internal Condition Y]`:
-    * **THEN** route to `[Module N.b]`.
+    * **THEN** route to `[Module 1.1.2]` (See Node 1.1.2 [Module Name]).
 
 * **WHILE** `[Process]` is active:
   * **THEN** update `[Local State]`.
 
 * return `[Output]` to `[Parent Node]`.
 
-#### N.1T Node N Terminology Ledger
+#### 1.1.2 Node 1.1 Terminology Ledger
 
 | Term | Definition |
 | --- | --- |
@@ -108,18 +108,18 @@ If none element in a node apply, the node remains a leaf.
 
 ---
 
-### [Node N.x]: [Element Name] (Leaf Node of Node [Parent ID])
+### Node 1.1.1: [Module 1.1.1 Name] (Leaf Node of Node 1.1)
 
 *Scope: Final node of logic. No further child nodes.*
 
-#### N.x.1 Logic Flow
+#### 1.1.1.1 Logic Flow
 
 * **IF** `[Condition]`:
   * **THEN** perform `[Atomic Action]`.
 * **ELSE**:
   * **THEN** return `[Default Value]`.
 
-#### N.x.1T Node N.x Terminology Ledger
+#### 1.1.1.2 Node 1.1.1 Terminology Ledger
 
 | Term | Definition |
 | --- | --- |

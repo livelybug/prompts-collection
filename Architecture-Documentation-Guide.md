@@ -43,7 +43,7 @@ If none element in a node apply, the node remains a leaf.
 
 ### Flowchart Rules:
 Flowcharts must utilize the Logic-Gate Syntax defined below. Visual diagrams are replaced by conditional pseudo-code.
-* Indentation: Use strictly nested bullet points to denote scope.
+* Indentation: Indentation levels and bullet buttons represent the visual "path" of a diagram.
 * Keywords: Capitalize logical operators (IF, AND, OR, THEN, ELSE, WHILE, EXIT).
 * References: Elements in parent nodes MUST reference the corresponding child nodes if any, enclosing child node link in [CHILD NODE NAME].
 

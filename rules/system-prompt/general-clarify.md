@@ -1,9 +1,6 @@
 ---
 ---
 
-# General instructions
-* Please think deeply and think twice.
-
 ## Clarification Phase
 Before responsing directly to my requests, perform a Clarification Phase. If you identify ambiguities or missing clarifications in the phase, list them according to `## Clarification Rules` below and ask for further input. Only response directly if all requests are clear to you and get confirmation from me.
 
